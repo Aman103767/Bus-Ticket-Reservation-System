@@ -17,7 +17,7 @@ public class Persentation{
 		Scanner input = new Scanner(System.in);
 		do {
 		 System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊ Customer ⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
-		 System.out.println("1. Search Buses \n2. Book Ticket \n3. Cancel Ticket");
+		 System.out.println("1. Search Buses \n2. Book Ticket \n3. Cancel Ticket \n4. Exit");
 		 System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
 		 
 		 int choice = input.nextInt();
