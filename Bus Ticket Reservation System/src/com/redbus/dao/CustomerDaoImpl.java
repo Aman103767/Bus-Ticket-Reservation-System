@@ -267,4 +267,31 @@ public class CustomerDaoImpl implements CustomerDao {
 		return message;
 	}
 
+	@Override
+	public List<CustomerAndBus> AllTicketDetails() throws CustomerException {
+		// TODO Auto-generated method stub
+		List<CustomerAndBus> list = new ArrayList<>();
+	       try(Connection conn = DBUtil.provideConnection()){
+	    	   
+	    	   PreparedStatement ps = conn.prepareStatement("select c.cust_id,c.cname,c.gender, c.age,c.contact_address,b.busno, b.bname, b.source, b.destination,b.busfare from bus b inner join customer c inner join bus_customer bc on b.busno = bc.busno And c.cust_id = bc.cust_id ");
+	    	  
+	    	   ResultSet rs = ps.executeQuery();
+	    	   boolean flag = true;
+	    	   while(rs.next()) {
+	    	     CustomerAndBus cab= new CustomerAndBus(rs.getInt("cust_id"),rs.getString("cname"),rs.getString("gender"),rs.getInt("age")
+	    	    		 ,rs.getString("contact_address"),rs.getInt("busno"),
+	    	    		 rs.getString("bname"),rs.getString("source"),rs.getString("destination"),rs.getInt("busfare"));
+	    	  list.add(cab);
+	    	   flag = false;
+	    	   }if(flag){
+	    		   throw new CustomerException("Please enter the correct details");
+	    	   }
+	       }catch(SQLException e) {
+	    	   System.out.println(e.getMessage());
+	    	 
+	       }
+	       
+		return list;
+	}
+
 }

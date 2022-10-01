@@ -53,7 +53,7 @@ public void setCname(String cname) {
 }
 @Override
 public String toString() {
-	return "CustomerAndBus [cust_id=" + cust_id + ", cname=" + cname + ", gender=" + gender + ", age=" + age
+	return "Ticket Details [cust_id=" + cust_id + ", cname=" + cname + ", gender=" + gender + ", age=" + age
 			+ ", contact_address=" + contact_address + ", busno=" + busno + ", bname=" + bname + ", source=" + source
 			+ ", destination=" + destination + "]";
 }

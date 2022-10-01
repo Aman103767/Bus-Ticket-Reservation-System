@@ -8,8 +8,8 @@ import com.redbus.dao.CustomerDaoImpl;
 import com.redbus.exceptions.CustomerException;
 
 public class RegisterCustomerUseCase {
-	
-	public static void addCustomer() {
+	static boolean flag = true;
+	public static boolean addCustomer() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊ Enter Customer Details ⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
 		System.out.println("Enter customer id ");
@@ -33,13 +33,15 @@ public class RegisterCustomerUseCase {
 	    String result;
 		try {
 			result = cd.RegisterCustomer(c);
+			if(result.equals("Not inserted")){
+				flag = false;
+			}
 			   System.out.println(result);
 		} catch (CustomerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	 System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
-		
+	 return flag;
 	}
 	
 	

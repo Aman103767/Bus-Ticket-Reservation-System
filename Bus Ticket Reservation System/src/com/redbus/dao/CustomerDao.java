@@ -30,6 +30,8 @@ public interface CustomerDao {
   public String minusSeats(int busno) throws BusException;
   
   public String plusSeats(int busno) throws BusException;
+  
+  public List<CustomerAndBus> AllTicketDetails() throws CustomerException;
 
   
 }

@@ -2,6 +2,7 @@ package com.redbus.presentation;
 
 import java.util.Scanner;
 
+import com.redbus.usecases.AllTicketDetailsUseCase;
 import com.redbus.usecases.AllocateSeatToCustomer;
 import com.redbus.usecases.CancelTicketUseCase;
 import com.redbus.usecases.GetAllBusUseCase;
@@ -13,6 +14,8 @@ public class Persentation{
 	static boolean ordering = true;
 	static boolean case1 = true;
 	static boolean case2 = true;
+	
+	
 	static void firstCase() {
 		Scanner input = new Scanner(System.in);
 		do {
@@ -30,7 +33,8 @@ public class Persentation{
 			 break;
 		 
 		 case 2:
-			 RegisterCustomerUseCase.addCustomer();
+			boolean flag =  RegisterCustomerUseCase.addCustomer();
+			if(flag)
 			 AllocateSeatToCustomer.allocateSeat();
 			 break;
 		 
@@ -55,7 +59,7 @@ public class Persentation{
 		Scanner input = new Scanner(System.in);
 		do {
 		 System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊ Administrator ⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
-		 System.out.println("1. Register Bus\n2. Exit");
+		 System.out.println("1. Register Bus\n2. View All Customer Ticket \n3. Exit");
 		 System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
 		 int choice = input.nextInt();
 		 switch(choice) {
@@ -63,6 +67,9 @@ public class Persentation{
 			 RegisterBusUseCase.addbus();
 			 break;
 		 case 2:
+			 AllTicketDetailsUseCase.details();
+			 break;
+		 case 3:
 		 case2 = false;
 		 break;
 		 default:
