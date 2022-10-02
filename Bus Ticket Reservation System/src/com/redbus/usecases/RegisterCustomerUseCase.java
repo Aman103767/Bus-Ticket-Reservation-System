@@ -30,13 +30,16 @@ public class RegisterCustomerUseCase {
 	    c.setGender(gender);
 	    c.setAge(age);
 	    c.setContact_address(contact_address);
-	    String result;
+	  
 		try {
-			result = cd.RegisterCustomer(c);
-			if(result.equals("Not inserted")){
+			boolean result = cd.RegisterCustomer(c);
+			if(result == false){
 				flag = false;
+				System.out.println("Enter the Correct details");
+			}else {
+				System.out.println("Customer is registered");
 			}
-			   System.out.println(result);
+			   //System.out.println(result);
 		} catch (CustomerException e) {
 			System.out.println(e.getMessage());
 		}

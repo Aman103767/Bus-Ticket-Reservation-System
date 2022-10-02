@@ -17,7 +17,7 @@ public interface CustomerDao {
 	
   public String RegisterBus(Bus b ) throws BusException;
   
-  public String RegisterCustomer(Customer c ) throws CustomerException;
+  public boolean RegisterCustomer(Customer c ) throws CustomerException;
   
   public String AllocateSeatToCustomer(int cust_id, int busno) throws AllocateSeatToCustomerException;
   

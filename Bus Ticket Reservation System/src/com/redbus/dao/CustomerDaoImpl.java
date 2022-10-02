@@ -87,9 +87,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public String RegisterCustomer(Customer c)throws CustomerException{
+	public boolean RegisterCustomer(Customer c)throws CustomerException{
 		// TODO Auto-generated method stub
-		String message = "Not inserted";
+		 boolean flag = false;
 		
 		try(Connection conn = DBUtil.provideConnection()){
 			
@@ -102,7 +102,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	     
 	     int x = ps.executeUpdate();
 	     if(x>0) {
-	    	 message = "customer is added";
+	      flag = true;
 	     }else {
 	    	 throw new CustomerException("Enter the correct details");
 	     }
@@ -113,7 +113,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		
 		
-		return message;
+		return flag;
 	}
 
 	@Override
