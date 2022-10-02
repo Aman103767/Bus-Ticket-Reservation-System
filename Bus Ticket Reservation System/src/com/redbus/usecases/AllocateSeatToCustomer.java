@@ -7,6 +7,7 @@ import com.redbus.bean.CustomerAndBus;
 import com.redbus.dao.CustomerDao;
 import com.redbus.dao.CustomerDaoImpl;
 import com.redbus.exceptions.AllocateSeatToCustomerException;
+import com.redbus.exceptions.BusException;
 import com.redbus.exceptions.CustomerException;
 
 public class AllocateSeatToCustomer {
@@ -18,18 +19,25 @@ public class AllocateSeatToCustomer {
 		int cust_id = input.nextInt();
 		System.out.println("Enter the Bus Number");
 		int Busno = input.nextInt();
-		
+		 boolean flag = false;
 	    CustomerDao cd = new CustomerDaoImpl();
 	    try {
-			String result  =cd.AllocateSeatToCustomer(cust_id, Busno);
-			System.out.println(result);
+			String result  =cd.AllocateSeatToCustomer(cust_id, Busno);	
+			try {
+				flag = cd.minusSeats(Busno);
+			} catch (BusException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+			
 			
 			System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
-		if(result != "Please Enter Correct Details" ) {
-			
+		if(result.equals("Your seat is confirmed") && flag ) {
+			System.out.println(result);
 		
 			try {
 				CustomerAndBus c = cd.contactPerson(cust_id,Busno);
+				
 				System.out.println("⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊ Contact Persons Details ⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊⤊");
 			    System.out.println("Customer Id : "+ c.getCust_id());
 			    System.out.println("Bus Number : "+ c.getBusno());

@@ -119,6 +119,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public String AllocateSeatToCustomer(int cust_id, int busno) throws AllocateSeatToCustomerException{
 		// TODO Auto-generated method stub
+		
 		String message = "Please Enter Correct Details";
 		try(Connection conn = DBUtil.provideConnection()){
 			PreparedStatement ps = conn.prepareStatement("Select * from customer where cust_id = ?");
@@ -226,15 +227,16 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public String minusSeats(int busno) throws BusException {
+	public boolean minusSeats(int busno) throws BusException {
 		// TODO Auto-generated method stub
-		String message= "Please Enter the correct details";
+		boolean flag  = false;
 		try(Connection conn = DBUtil.provideConnection()){
 		PreparedStatement ps = conn.prepareStatement("update bus set availability = availability - 1 where busno = ? And availability >0");
 		ps.setInt(1, busno);
 		int x = ps.executeUpdate();
 		if(x>0) {
-			message = "Seat is booked no of seats Availability is decreased";
+			flag = true;
+			
 		}else {
 			throw new BusException("There is not seats availability for this bus");
 		}
@@ -243,7 +245,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		}catch(SQLException e ) {
 			throw new BusException(e.getMessage());
 		}
-		return message;
+		return flag;
 	}
 
 	@Override

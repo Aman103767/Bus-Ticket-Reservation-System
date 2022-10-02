@@ -27,7 +27,7 @@ public interface CustomerDao {
 
   public CustomerAndBus contactPerson(int cust_id, int busno)throws CustomerException;
   
-  public String minusSeats(int busno) throws BusException;
+  public boolean minusSeats(int busno) throws BusException;
   
   public String plusSeats(int busno) throws BusException;
   

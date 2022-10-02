@@ -32,6 +32,7 @@ public class RegisterCustomerUseCase {
 	    c.setContact_address(contact_address);
 	  
 		try {
+			flag  = true;
 			boolean result = cd.RegisterCustomer(c);
 			if(result == false){
 				flag = false;
